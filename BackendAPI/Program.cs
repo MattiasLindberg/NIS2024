@@ -9,12 +9,12 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        var environment = Environment.GetEnvironmentVariable("ASPNOTCORE_ENVIRONMENT");
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development";
         if (environment != "Development")
         {
             // If component runs in Azure, then use App Registration to authenticate
-            var tenantId = "f6de2f9d-0df6-4d10-b7df-ac7351225429"; // Environment.GetEnvironmentVariable("TenantId");
-            var audienceUri = "api://appreg-nis2024-01"; //  Environment.GetEnvironmentVariable("AudienceUri");
+            var tenantId = Environment.GetEnvironmentVariable("TenantId");
+            var audienceUri = "api://nis2024-demo-01";
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -28,7 +28,7 @@ public class Program
                         ValidateAudience = true,
                         ValidAudience = audienceUri,
 
-                        ValidateLifetime = true
+                        ValidateLifetime = true,
                     };
                 });
         }

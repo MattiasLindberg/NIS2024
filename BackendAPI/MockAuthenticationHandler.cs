@@ -15,7 +15,7 @@ public class MockAuthenticationHandler : AuthenticationHandler<AuthenticationSch
 
     protected override Task<AuthenticateResult> HandleAuthenticateAsync()
     {
-        var claims = new[] { new Claim(ClaimTypes.Name, "Developer"), new Claim(ClaimTypes.Role, "WeatherContributor") };
+        var claims = new[] { new Claim(ClaimTypes.Name, "Developer"), new Claim(ClaimTypes.Role, "Contributor") };
         var identity = new ClaimsIdentity(claims, "Development");
         var principal = new ClaimsPrincipal(identity);
         var ticket = new AuthenticationTicket(principal, "Development");
@@ -23,4 +23,3 @@ public class MockAuthenticationHandler : AuthenticationHandler<AuthenticationSch
         return Task.FromResult(AuthenticateResult.Success(ticket));
     }
 }
-

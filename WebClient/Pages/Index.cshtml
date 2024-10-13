@@ -4,12 +4,14 @@
     ViewData["Title"] = "Home page";
 
     BackendAPI api = new BackendAPI("https://api-nis2024-01-a9ewgydcarc4h4ax.swedencentral-01.azurewebsites.net/", new HttpClient());
-    ICollection<WeatherForecast> wf = await api.GetWeatherForecastAsync();
+    //BackendAPI api = new BackendAPI("https://localhost:7187/", new HttpClient());
+
+    //ICollection<WeatherForecast> wf = await api.GetWeatherRBACAsync();
+    ICollection<WeatherForecast> wf = await api.GetWeatherAnonymousAsync();
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Nordic Integration Summit 2024</h1>
 </div>
 
 <form method="post">

@@ -11,8 +11,14 @@ public class IndexModel : PageModel
         _logger = logger;
     }
 
-    public void OnGet()
+    public async void OnPostIncrease()
     {
+        string url = "https://api-nis2024-01-a9ewgydcarc4h4ax.swedencentral-01.azurewebsites.net/";
+        //string url = "https://localhost:7187/";
 
+        BackendAPI api = new BackendAPI(url, new HttpClient());
+
+        await api.SetWeatherRBACAsync(0, 20);
+        //await api.SetWeatherAuthorizedAsync(20, 40);
     }
 }

@@ -14,8 +14,7 @@ Set-StrictMode -Version 3
 # in Entra ID, so this is a manual process for now!
 #####################################################
 
-
-$AppRegName = "appreg-nis2024-01"
+$AppRegName = "appreg-nis2024-demo01"
 $AppId = "api://$AppRegName"
 
 #####################################################
@@ -46,7 +45,7 @@ if ($appRegistration) {
 $appRegistration = Get-AzADApplication -DisplayName $AppRegName
 $servicePrincipal = Get-AzADServicePrincipal -ApplicationId $appRegistration.AppId
 $currentRoles = $servicePrincipal.AppRole
-$roleExists = $currentRoles | Where-Object { $_.DisplayName -eq "Weather Contributor" }
+$roleExists = $currentRoles | Where-Object { $_.DisplayName -eq "Contributor" }
 
 if ($roleExists) {
     $contributorRoleId = $roleExists.Id
@@ -56,9 +55,9 @@ if ($roleExists) {
     # Role does not exist, add it to the current roles and update the application
     $contributorRole = [Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphAppRole]::new()
     $contributorRole.Id = New-Guid
-    $contributorRole.DisplayName = "Weather Contributor"
+    $contributorRole.DisplayName = "Contributor"
     $contributorRole.Description = "Allow reading and updating of weather."
-    $contributorRole.Value = "WeatherContributor"
+    $contributorRole.Value = "Contributor"
     $contributorRole.IsEnabled = $true
     $contributorRole.AllowedMemberType = @("Application")
     $contributorRoleId = $contributorRole.Id
@@ -66,7 +65,7 @@ if ($roleExists) {
     $newRoles = $appRegistration.AppRole + $contributorRole
     Update-AzADApplication -ObjectId $appRegistration.Id -AppRole $newRoles
 
-    Write-Output "Role WeatherContributor added successfully: $($role.DisplayName)"
+    Write-Output "Role Contributor added successfully: $($role.DisplayName)"
 }
 
 
@@ -78,7 +77,7 @@ if ($roleExists) {
 $appRegistration = Get-AzADApplication -DisplayName $AppRegName
 $servicePrincipal = Get-AzADServicePrincipal -ApplicationId $appRegistration.AppId
 $currentRoles = $servicePrincipal.AppRole
-$roleExists = $currentRoles | Where-Object { $_.DisplayName -eq "Weather Reader" }
+$roleExists = $currentRoles | Where-Object { $_.DisplayName -eq "Reader" }
 
 if ($roleExists) {
     $readerRoleId = $roleExists.Id
@@ -88,9 +87,9 @@ if ($roleExists) {
     # Role does not exist, add it to the current roles and update the application
     $readerRole = [Microsoft.Azure.PowerShell.Cmdlets.Resources.MSGraph.Models.ApiV10.MicrosoftGraphAppRole]::new()
     $readerRole.Id = New-Guid
-    $readerRole.DisplayName = "Weather Reader"
+    $readerRole.DisplayName = "Reader"
     $readerRole.Description = "Allow reading weather."
-    $readerRole.Value = "WeatherReader"
+    $readerRole.Value = "Reader"
     $readerRole.IsEnabled = $true
     $readerRole.AllowedMemberType = @("Application")
     $readerRoleId = $readerRole.Id
@@ -98,7 +97,7 @@ if ($roleExists) {
     $newRoles = $appRegistration.AppRole + $readerRole
     Update-AzADApplication -ObjectId $appRegistration.Id -AppRole $newRoles
 
-    Write-Output "Role WeatherReader added successfully: $($role.DisplayName)"
+    Write-Output "Role Reader added successfully: $($role.DisplayName)"
 
 }
 
@@ -110,22 +109,21 @@ $principalId = $appService.Identity.PrincipalId
 Write-Output "MID= $($principalId)"
 
 #####################################################
-# Assign the role to the managed identity (Role-based access control)
+# Assign Reader and Contributor to the managed identity (Role-based access control)
 
-# ObjectId of the Managed Identity (Identity in Azure portal) assigned to the web application (app-alz-devtest-sc-idmpapi-preview-datasync-01) that should get the role.
+# ObjectId of the Managed Identity for the Client App Service, i.e. the client that should be assigned the role.
 $WebAppManagedIdentity = $principalId
 
-# ObjectId of the Enterprise Application (appreg-umc-ext-prd-cr-demo-rg01-website-idmpapi), the application that is beeing called.
+# ObjectId of the Enterprise Application (NOT the App Registration).
 $EntAppObjectId = $servicePrincipal.Id
 
-
-# Id property of the custom app registration role, taken from the Manifest JSON shown in the Azure Portal.
+# Id property of the Reader role, taken from the Manifest JSON shown in the Azure Portal.
 $RoleIdInAppReg = $contributorRoleId
 
 # Execute Graph API call using Azure CLI
 az rest -m POST -u https://graph.microsoft.com/v1.0/servicePrincipals/$WebAppManagedIdentity/appRoleAssignments -b "{'principalId': '$WebAppManagedIdentity', 'resourceId': '$EntAppObjectId', 'appRoleId': '$RoleIdInAppReg'}"
 
-# Id property of the custom app registration role, taken from the Manifest JSON shown in the Azure Portal.
+# Id property of the Contributor role, taken from the Manifest JSON shown in the Azure Portal.
 $RoleIdInAppReg = $readerRoleId
 
 # Execute Graph API call using Azure CLI

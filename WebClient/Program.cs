@@ -11,8 +11,6 @@ public class Program
 
         var app = builder.Build();
 
-        BackendAPI.ApplicationRegistrationAudience = "api://appreg-nis2024-01";
-
         // Configure the HTTP request pipeline.
         if (!app.Environment.IsDevelopment())
         {
