@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BackendAPI", "BackendAPI\BackendAPI.csproj", "{63D02DC9-CD16-4302-9E9E-25340A4DA1CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebClient", "WebClient\WebClient.csproj", "{A62228A6-9594-42B7-9BED-6BAC91FBF204}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deploy", "Deploy", "{43B9FA7D-986E-4147-A326-E678242541EE}"
+	ProjectSection(SolutionItems) = preProject
+		Deploy\CreateAppReg.ps1 = Deploy\CreateAppReg.ps1
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{63D02DC9-CD16-4302-9E9E-25340A4DA1CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63D02DC9-CD16-4302-9E9E-25340A4DA1CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63D02DC9-CD16-4302-9E9E-25340A4DA1CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63D02DC9-CD16-4302-9E9E-25340A4DA1CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A62228A6-9594-42B7-9BED-6BAC91FBF204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A62228A6-9594-42B7-9BED-6BAC91FBF204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A62228A6-9594-42B7-9BED-6BAC91FBF204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A62228A6-9594-42B7-9BED-6BAC91FBF204}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {61C08457-E250-4126-A6F4-924C58A48DA5}
+	EndGlobalSection
+EndGlobal
