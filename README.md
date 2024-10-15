@@ -2,6 +2,8 @@
 
 Code and presentation for my session at Nordic Integration Summit 2024.
 
+Please find the presentation at [Key-less authorization between Azure App Services.pdf](https://github.com/MattiasLindberg/NIS2024/blob/main/Key-less%20authorization%20between%20Azure%20App%20Services.pdf)
+
 ## Abstract
 Using RBAC to assign access to resources is standard in Azure, but how 
 do you do that between two Azure App Services? It is not uncommon to still 
