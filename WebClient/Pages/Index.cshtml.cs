@@ -18,7 +18,7 @@ public class IndexModel : PageModel
 
         BackendAPI api = new BackendAPI(url, new HttpClient());
 
-        await api.SetWeatherRBACAsync(0, 20);
+        await api.SetWeatherRBACAsync(40, 60);
         //await api.SetWeatherAuthorizedAsync(20, 40);
     }
 }

@@ -25,7 +25,7 @@ public class WeatherForecastController : Controller
     /// Get weather using RBAC for authorization.
     /// Both Reader and Contributor can access.
     /// </summary>
-    [Authorize(Roles = "Contributor, Reader")]
+    [Authorize(Roles = "Reader,Contributor")]
     [HttpGet(Name = "GetWeatherRBAC")]
     public IEnumerable<WeatherForecast> Get()
     {

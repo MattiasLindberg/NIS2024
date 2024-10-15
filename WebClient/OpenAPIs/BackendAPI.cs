@@ -10,7 +10,7 @@ public partial class BackendAPI
     static BackendAPI()
     {
         // Should be read from configuration, but for demos this is easier
-        BackendAPI.ApplicationRegistrationAudience = "api://nis2024-demo-01";
+        BackendAPI.ApplicationRegistrationAudience = "api://nis2024-demo-04";
     }
 
     partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, string url)

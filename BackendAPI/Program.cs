@@ -14,7 +14,7 @@ public class Program
         {
             // If component runs in Azure, then use App Registration to authenticate
             var tenantId = Environment.GetEnvironmentVariable("TenantId");
-            var audienceUri = "api://nis2024-demo-01";
+            var audienceUri = "api://nis2024-demo";
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

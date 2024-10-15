@@ -6,8 +6,8 @@
     BackendAPI api = new BackendAPI("https://api-nis2024-01-a9ewgydcarc4h4ax.swedencentral-01.azurewebsites.net/", new HttpClient());
     //BackendAPI api = new BackendAPI("https://localhost:7187/", new HttpClient());
 
-    //ICollection<WeatherForecast> wf = await api.GetWeatherRBACAsync();
-    ICollection<WeatherForecast> wf = await api.GetWeatherAnonymousAsync();
+    ICollection<WeatherForecast> wf = await api.GetWeatherRBACAsync();
+    //ICollection<WeatherForecast> wf = await api.GetWeatherAnonymousAsync();
 }
 
 <div class="text-center">
